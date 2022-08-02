@@ -1,0 +1,15 @@
+Node* deleteNode(Node* root, int key)
+    {
+        if(!root) return NULL;
+        
+        root->right = deleteNode(root->right,key);
+        root->left = deleteNode(root->left,key);
+        
+        if(root->data >= key){
+            Node* temp = root->left;
+            delete(root);
+            return temp;
+        }
+        
+        return root;
+    }
