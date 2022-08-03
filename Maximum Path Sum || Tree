@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int util(Node* root,int &maxi){
+        if(root == NULL) return 0;
+        
+        int leftMax = util(root->left,maxi);
+        int rightMax =util(root->right,maxi);
+        if(root->left && root->right){
+        maxi = max(maxi,root->data+leftMax+rightMax);
+        return root->data + max(leftMax,rightMax);
+        }
+        return (!root->right)?  root->data+leftMax: root->data+rightMax;
+    }
+    int maxPathSum(Node* root)
+    {
+        // code here
+        int maxi = INT_MIN;
+        int res = util(root,maxi);
+        if (root->left == NULL || root->right == NULL)
+        {
+            maxi = max(maxi, res);
+        }
+
+        return maxi;
+        
+    }
+};
