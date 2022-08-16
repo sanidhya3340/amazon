@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows == 1){
+            return s;
+        }
+        int i = 0;
+        vector<string>arr(numRows);
+        bool flag = true;
+        for(int it=0;it<s.length();it++){
+            arr[i].push_back(s[it]);
+            if(flag)
+                i++;
+            else
+                i--;
+            if(i == numRows){
+                flag = false;
+                i-=2;
+            }
+            if(i==0){
+                flag = true;
+            }
+        }
+        string ret = "";
+        for(int i=0;i<numRows;i++){
+            for(int j=0;j<arr[i].size();j++){
+                // cout<<arr[i][j]<<" ";
+                ret.push_back(arr[i][j]);
+            }
+            // cout<<endl;
+        }
+        
+        return ret;
+    }
+};
