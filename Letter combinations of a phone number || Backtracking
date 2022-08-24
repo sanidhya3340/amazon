@@ -1,0 +1,43 @@
+class Solution {
+public:
+    
+    map<char,string>mp;
+    
+    void init(){
+        mp.insert({'2', "abc"});
+        mp.insert({'3',"def"});
+        mp.insert({'4',"ghi"});
+        mp.insert({'5',"jkl"});
+        mp.insert({'6',"mno"});
+        mp.insert({'7',"pqrs"});
+        mp.insert({'8',"tuv"});
+        mp.insert({'9',"wxyz"});
+    }
+   
+    
+    vector<string> res;
+    
+    void util(string digits,string ssf,int idx){
+        if(idx==digits.size()){
+            res.push_back(ssf);
+            return;
+        }
+        string temp = mp[digits[idx]];
+        for(int i=0;i<temp.size();i++){
+            ssf.push_back(temp[i]);
+            util(digits,ssf,idx+1);
+            ssf.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size()==0) return res;
+        
+        init();
+        
+        
+        util(digits,"",0);
+        
+        return res;
+        
+    }
+};
