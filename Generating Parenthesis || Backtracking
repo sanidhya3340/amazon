@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<string> res;
+    void util(string asf, int n,int open,int close){
+        if(close == n){
+            res.push_back(asf);
+            return;
+        }
+        if(open == n){
+            util(asf+')',n,open,close+1);
+            return;
+        }
+        if(close<open){
+            util(asf+')',n,open,close+1);
+        }
+        
+        util(asf+'(',n,open+1,close);
+        
+    }
+    vector<string> generateParenthesis(int n) {
+        util("",n,0,0);
+        return res;
+    }
+};
